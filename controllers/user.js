@@ -30,6 +30,7 @@ const singin = (req, res, db, bcrypt) => {
 
 const register = (req, res, db, bcrypt) => {
     const { email, name, password } = req.body
+    console.log(req.body)
     const hash = bcrypt.hashSync(password)
     db.transaction(trx => {
         trx.insert({
@@ -61,7 +62,6 @@ const register = (req, res, db, bcrypt) => {
         .catch(trx.rollback)
     })
     .catch(err => {
-        console.log(err)
         res.status(400).json("User with this email already exists!")
     })
 }
