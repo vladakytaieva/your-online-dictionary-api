@@ -61,6 +61,7 @@ const register = (req, res, db, bcrypt) => {
         .catch(trx.rollback)
     })
     .catch(err => {
+        console.log(err)
         res.status(400).json("User with this email already exists!")
     })
 }
