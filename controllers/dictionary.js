@@ -8,7 +8,7 @@ const addWord = (req, res, db) => {
             translation: translation,
             userid: id,
             category: category,
-            tableName: tableName
+            tablename: tableName
         })
         .then(dict => {
             return db('dict').select('*').where('userid', '=', id).orderBy('id')
@@ -26,7 +26,7 @@ const editWord = (req, res, db) => {
             transcription: transcription,
             translation: translation,
             category: category,
-            tableName: tableName
+            tablename: tableName
         }, ['*'])
         .then(d => {
             return db('dict').select('*')
