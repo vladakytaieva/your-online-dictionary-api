@@ -1,6 +1,5 @@
 const addWord = (req, res, db) => {
     const { id, word, transcription, translation } = req.body
-    const userId = parseInt(id)
     db('dict')
         .returning('*')
         .insert({
@@ -10,7 +9,7 @@ const addWord = (req, res, db) => {
             userId: userId
         })
         .then(dict => {
-            db('dict').select('*').where('userid', '=', userId).orderBy('id')
+            db('dict').select('*').where('userid', '=', id).orderBy('id')
             .then(data => res.json(data))
         })
         .catch(err => res.status(400).json("couldn't add new word"))
