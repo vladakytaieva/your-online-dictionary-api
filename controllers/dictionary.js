@@ -6,7 +6,7 @@ const addWord = (req, res, db) => {
             word: word,
             transcription: transcription,
             translation: translation,
-            userId: userId
+            userid: id
         })
         .then(dict => {
             return db('dict').select('*').where('userid', '=', id).orderBy('id')
