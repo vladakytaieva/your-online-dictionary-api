@@ -7,7 +7,7 @@ const addFilter = (req, res, db) => {
             userId: id 
         })
         .then(ans => {
-            db(name).select('*').where('userId', '=', id).orderBy('id')
+            db(name).select('*').where('userid', '=', id).orderBy('id')
             .then(data => {
                 const values = data.map(el => el.value)
                 res.json(values)
@@ -20,11 +20,11 @@ const getFilters = (req, res, db) => {
     const { id } = req.body
     db('tables')
         .select('value')
-        .where('userId', '=', id)
+        .where('userid', '=', id)
         .then(tables => {
             db('categories')
                 .select('value')
-                .where('userId', '=', id)
+                .where('userid', '=', id)
                 .then(categories => {
                     res.json({
                         tables: tables.map(el => el.value),
@@ -46,7 +46,7 @@ const deleteFilter = (req, res, db) => {
         .del(['*'])
         .then(data => {
             db(name).select('*')
-                .where('userId', '=', id)
+                .where('userid', '=', id)
                 .then(data => res.json(data.map(el => el.value)))
                 .catch(err => res.json('error deleting category or table'))
         })

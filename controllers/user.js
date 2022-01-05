@@ -11,7 +11,7 @@ const singin = (req, res, db, bcrypt) => {
                     .where('email', '=', email)
                     .then(user => {
                         db('dict').select('*')
-                            .where('userId', '=', user[0].id)
+                            .where('userid', '=', user[0].id)
                             .orderBy('id', 'asc')
                             .then(data => {
                                 res.json({
@@ -42,14 +42,14 @@ const register = (req, res, db, bcrypt) => {
         .then(loginEmail => {
             return db('users')
                 .returning('*')
-                .join('dict', 'users.id', 'dict.userId')
+                .join('dict', 'users.id', 'dict.userid')
                 .insert({
                     email: loginEmail[0],
                     name: name
                 })
                 .then(user => {
                     db('dict').select('*')
-                            .where('userId', '=', user[0].id)
+                            .where('userid', '=', user[0].id)
                             .then(data => {
                                 res.json({
                                     dict: data,

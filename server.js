@@ -28,7 +28,7 @@ app.get("/", (req, res) => res.status(200).json("hellooo"))
 app.get('/dictionary/:id', (req, res) => {
     const { id }  = req.params
     db('dict').select('*')
-        .where('userId', '=', id)
+        .where('userid', '=', id)
         .then(data => {
             res.json(data)
         })

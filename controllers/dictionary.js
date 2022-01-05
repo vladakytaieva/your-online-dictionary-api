@@ -10,7 +10,7 @@ const addWord = (req, res, db) => {
             userId: userId
         })
         .then(dict => {
-            db('dict').select('*').where('userId', '=', userId).orderBy('id')
+            db('dict').select('*').where('userid', '=', userId).orderBy('id')
             .then(data => res.json(data))
         })
         .catch(err => res.status(400).json("couldn't add new word"))
@@ -29,7 +29,7 @@ const editWord = (req, res, db) => {
         }, ['*'])
         .then(d => {
             db('dict').select('*')
-                .where('userId', '=', id)
+                .where('userid', '=', id)
                 .orderBy('id', 'asc')
                 .then(data => {
                     res.json(data)
@@ -44,7 +44,7 @@ const deleteWord = (req, res, db) => {
         .del()
         .then(d => {
             return db('dict').select('*')
-                .where('userId', '=', id)
+                .where('userid', '=', id)
                 .orderBy('id', 'asc')
                 .then(data => res.json(data))
                 .catch(err => res.status(400).json('unable to get dictionary'))
