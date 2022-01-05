@@ -4,7 +4,7 @@ const addFilter = (req, res, db) => {
         .returning('*')
         .insert({
             value: value,
-            userId: id 
+            userid: id 
         })
         .then(ans => {
             return db(name).select('*').where('userid', '=', id).orderBy('id')
@@ -40,7 +40,7 @@ const deleteFilter = (req, res, db) => {
     const { id, value, name } = req.body
     db(name)
         .where({
-            userId: id,
+            userid: id,
             value: value
         })
         .del(['*'])

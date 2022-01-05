@@ -1,12 +1,14 @@
 const addWord = (req, res, db) => {
-    const { id, word, transcription, translation } = req.body
+    const { id, word, transcription, translation, category, tableName  } = req.body
     db('dict')
         .returning('*')
         .insert({
             word: word,
             transcription: transcription,
             translation: translation,
-            userid: id
+            userid: id,
+            category: category,
+            tableName: tableName
         })
         .then(dict => {
             return db('dict').select('*').where('userid', '=', id).orderBy('id')
