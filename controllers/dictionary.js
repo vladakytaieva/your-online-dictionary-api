@@ -13,6 +13,7 @@ const addWord = (req, res, db) => {
         .then(dict => {
             return db('dict').select('*').where('userid', '=', id).orderBy('id')
             .then(data => res.json(data))
+            .catch(console.log)
         })
         .catch(err => res.status(400).json("couldn't add new word"))
 }

@@ -12,6 +12,7 @@ const addFilter = (req, res, db) => {
                 const values = data.map(el => el.value)
                 res.json(values)
             })
+            .catch(console.log)
         })
         .catch(err => res.status(400).json(`problems with updating ${name}`))
 }
@@ -50,6 +51,7 @@ const deleteFilter = (req, res, db) => {
                 .then(data => res.json(data.map(el => el.value)))
                 .catch(err => res.json('error deleting category or table'))
         })
+        .catch(console.log)
 }
 
 module.exports = {

@@ -55,6 +55,7 @@ const register = (req, res, db, bcrypt) => {
                                     ...user[0]
                                 })
                             })
+                            .catch(console.log)
                 })
         })
         .then(trx.commit)
