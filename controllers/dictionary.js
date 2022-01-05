@@ -21,13 +21,14 @@ const editWord = (req, res, db) => {
     const { id, wid, word, transcription, translation, category, tableName } = req.body
     db('dict')
         .where('id', '=', wid)
+        .returning('*')
         .update({
             word: word,
             transcription: transcription,
             translation: translation,
             category: category,
             tablename: tableName
-        }, ['*'])
+        })
         .then(d => {
             return db('dict').select('*')
                 .where('userid', '=', id)
