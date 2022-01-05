@@ -9,7 +9,7 @@ const addWord = (req, res, db) => {
             userId: userId
         })
         .then(dict => {
-            db('dict').select('*').where('userid', '=', id).orderBy('id')
+            return db('dict').select('*').where('userid', '=', id).orderBy('id')
             .then(data => res.json(data))
         })
         .catch(err => res.status(400).json("couldn't add new word"))
@@ -27,7 +27,7 @@ const editWord = (req, res, db) => {
             tableName: tableName
         }, ['*'])
         .then(d => {
-            db('dict').select('*')
+            return db('dict').select('*')
                 .where('userid', '=', id)
                 .orderBy('id', 'asc')
                 .then(data => {

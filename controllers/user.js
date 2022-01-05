@@ -79,7 +79,7 @@ const updateUser = (req, res, db, bcrypt) => {
     }, ['*'])
     .then(data => {
         if (hash) {
-            db('login')
+            return db('login')
                 .where('email', '=', data[0].email)
                 .update({
                     hash: hash
