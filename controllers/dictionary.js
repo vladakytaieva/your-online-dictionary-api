@@ -36,7 +36,9 @@ const editWord = (req, res, db) => {
                 .then(data => {
                     res.json(data)
                 })
+                .catch(console.log)
         })  
+        .catch(console.log)
 }
 
 const deleteWord = (req, res, db) => {
